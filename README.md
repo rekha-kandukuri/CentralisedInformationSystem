@@ -41,15 +41,15 @@ CIS is an educational platform where students can easily browse courses from var
 
 <h2> Gallery </h2>
 
-<h3></h3>
+<h3>Forum</h3>
 <img src="imgs/rekha1.png" >
-<h3></h3>
+<h3>Real-Time Discussion Forum</h3>
 <img src="imgs/rekha2.png" >
-<h3></h3>
+<h3>Instructor Profile</h3>
 <img src="imgs/rekha3.png" >
-<h3></h3>
+<h3>Course Enrollment</h3>
 <img src="imgs/rekha4.png" >
-<h3></h3>
+<h3>Enrolling in a Course</h3>
 <img src="imgs/enrolled in course.png" >
-<h3></h3>
+<h3>Instructor Updated About Enrollment</h3>
 <img src="imgs/updated teacher dashboard.png" >
