@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-recommender = Blueprint('recommender', __name__, template_folder='templates')
+recommender = Blueprint('recommender', __name__)
 
 from . import routes, models
