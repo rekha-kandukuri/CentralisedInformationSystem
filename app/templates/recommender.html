@@ -1,0 +1,71 @@
+{% extends 'template.html' %}
+
+
+
+{%block body%}
+
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+  <br>
+  <br>
+<form action="" method='POST'>
+<div class="container">
+  <h1>You give us details, we do the searching</h1>
+  <br>
+  <br>
+<h4>Choose Previous 3 Courses</h4>
+<br><br>
+<label for="course1">Choose course 1:</label>
+<select id="course1" name="course1">
+    {% for i in options['Title'] %}
+  <option value="{{i}}">{{i}}</option>
+    {%endfor%}
+</select>
+<br>
+<br>
+<br>
+<label for="course2">Choose course 2:</label>
+<select id="course2" name="course2">
+    {% for i in options['Title'] %}
+  <option value="{{i}}">{{i}}</option>
+    {%endfor%}
+</select>
+<br>
+<br>
+<br>
+<label for="course3">Choose course 3:</label>
+<select id="course3" name="course3">
+    {% for i in options['Title'] %}
+  <option value="{{i}}">{{i}}</option>
+    {%endfor%}
+</select>
+<br>
+<br>
+<br>
+
+<button type='Submit' class='btn btn-primary'>Submit</button>
+</div>
+<br>
+<br>
+
+</form>
+{% if indices%}
+<div class="container">
+  <h2>Here are your suggestions</h2>
+  {% for i in indices%}
+  <div class="card" data-aos="flip-right" data-aos-delay="100">
+    <h5 class="card-header">{{options.iloc[i]['Title']}}</h5>
+    <div class="card-body">
+  
+      <p class="card-text">{{options.iloc[i]['HeadLine']}}</p>
+      <p class="card-text">Created by {{options.iloc[i]['Instructors']}} || Rating:{{options.iloc[i]['Rating']}}</p>
+      <a href="{{options.iloc[i]['Links']}}" target="blank_" class="btn btn-info btn-pill">Check Out Course</a>
+    </div>
+  </div>
+  <br>
+  {%endfor%}</div>
+</div>
+<br>
+<br>
+
+{%endif%}
+{%endblock%}
