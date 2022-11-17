@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        <meta charset="utf-8">
+        <d
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{{url_for('static',filename='js/jquery-3.3.1.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/jquery-ui.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/jquery.fancybox.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/aos.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
+    <link rel="stylesheet" href="{{url_for('static',filename='assets/fonts/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='assets/fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='assets/fonts/fontawesome5-overrides.min.css')}}">
+        
+        <style>
+          
+
+body  {
+   background-color: white; /* For browsers that do not support gradients */
+  /*background-image: url('../static/images/home/img(11).jpg');*/}
+
+  button {
+    outline: none;
+
+}
+</style>
+<script data-ad-client="ca-pub-9377089419251363" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+ </head>
+  
+ <body  body style="margin-top: 60px; width: 100%; height:100vh;max-width: 100%;overflow-x: hidden;">
+   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-blue w-65 "  data-aos="{{data_aos_header}}" data-aos-delay="{{data_header_aos_delay}}">
+        <a class="navbar-brand" href="{{url_for('home.index')}}">
+    <img src="{{url_for('static',filename='images/home/celislogo.png')}}" width="140" height="60" class="d-inline-block align-top" alt="" loading="lazy">
+
+    </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('home.index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('course.courses')}}">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('forum.forum_home')}}">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('recommender.recommend')}}">Recommend</a>
+            </li>
+            {% if current_user.is_anonymous %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('auth.loginUser')}}">SignIn/SignUp</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('auth.logout')}}">SignOut</a>
+            </li>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{url_for('auth.profile',username=current_user.username)}}" >
+            Hey, {{current_user.username}}
+          </a>
+    </li>
+            
+            {% endif %}
+            
+          </ul>
+            
+            
+
+        </div>
+      </nav>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {%for category,message in messages%}
+        <div class="container">
+          <br>
+          <div class="alert alert-{{category}} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close" name="button"><span aria-hidden="true">&times;</span></button>
+            {{message}}
+          </div>
+        </div>
+
+        {%endfor%}
+      {%endif%}
+      {%endwith%}
+
+
+
+ {% block body %}
+
+
+
+ {% endblock %}
+ 
+
+               <footer >
+      <div class="container-fluid text-center" style="background-color: #1c1c1c;font-weight: 5;">
+        <div class="py-4">
+          <h2 class="text-light" style="font-family:  
+Segoe UI;">Interested in working with us?</h2>
+          <button
+            class="btn btn-outline-light btn-lg mt-2" 
+            onclick="window.location.href='{{url_for('home.contactus')}}';" style="font-family:  
+Segoe UI;"
+          >
+            Let's talk!
+          </button>
+        </div>
+        <div class="row" style="font-family:  
+Segoe UI;">
+
+          <div class="col-12 col-md-4 py-2">
+            <h5 class="text-info pb-3">Personal</h5>
+            <a href="{{url_for('forum.forum_home')}}" class="text-light d-block"><i class="fa fa-align-left text-light"></i> Forum</a>
+            <a href="{{url_for('auth.profile',username=current_user.username)}}" class="text-light d-block"><i class="fa fa-user text-light"></i> Profile</a>
+            <!--<a href="#courses-section" class="text-light d-block">About Us!</a>-->
+            <a href="{{url_for('course.courses')}}" class="text-light d-block"><i class="fa fa-university text-light"></i> Courses</a>
+             
+           
+
+          </div>
+          <div class="col-12 col-md-4 py-2">
+            <h5 class="text-info pb-3">Get in touch!</h5>
+            <a href="https://mail.google.com/mail" class="text-light d-block"><i class="fa fa-envelope text-light"></i> Mail Us</a>
+            <a href="{{url_for('home.contactus')}}" class="text-light d-block"><i class="fa fa-phone text-light"></i> Contact us</a>
+            <a href="{{url_for('home.contactus')}}" class="text-light">
+                      Write a recommendation <i class="fa fa-heart text-light"></i>
+            </a>
+
+          </div>
+          <div class="col-12 col-md-4 py-2">
+            <h5 class="text-info pb-3">Social</h5>
+            <a
+              href="https://www.linkedin.com/in/aravind-harinarayanan-285492189/"
+            >
+              <i class="fa fa-linkedin text-light h1 d-block"></i>
+            </a>
+            <a href="https://github.com/AravindHari">
+              <i class="fa fa-github text-light h1 d-block"></i>
+            </a>
+            <a href="https://www.instagram.com/aravind_hari1/">
+              <i class="fa fa-instagram text-light h1 d-block"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100005545604764">
+              <i class="fa fa-facebook text-light h1 d-block"></i>
+            </a>
+          </div>
+        </div>
+</div>
+        
+        <div class="footer-copyright text-center py-3" style="background-color:#CACFD2;border-style: solid;border-width: 5px;border-color: grey ">
+          
+          <p style="font-weight: bold;"> © 2020 Copyright:<a href="https://mdbootstrap.com/" class="text-info"> CIS </a></p>
+          <a href="{{url_for('home.index')}}" ><img src="{{url_for('static',filename='images/home/shortlogo.png')}}" width="110" height="60" style="position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-bottom: 60px;
+  
+  "></a>
+         
+                      
+         </div>
+      
+    </footer>
+              <
+
+
+
+   <script src="{{url_for('static',filename='js/jquery-ui.js')}}"></script>
+              <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/owl.carousel.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/jquery.stellar.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/jquery.countdown.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/bootstrap-datepicker.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/jquery.easing.1.3.js')}}"></script>
+              <script src="{{url_for('static',filename='js/aos.js')}}"></script>
+              <script src="{{url_for('static',filename='js/jquery.fancybox.min.js')}}"></script>
+              <script src="{{url_for('static',filename='js/jquery.sticky.js')}}"></script>
+              <script src="{{url_for('static',filename='js/main.js')}}"></script>
+              <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#review_slider_content").lightSlider({
+                auto: true,
+                loop: true,
+                responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:3,
+                        slideMove:1,
+                        slideMargin:6,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+                ]
+            });
+        })
+    </script>
+
+  
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{{url_for('static',filename='assets/js/agency.js')}}"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+    
+ </body>
+</html>
