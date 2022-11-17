@@ -1,0 +1,148 @@
+{% extends 'template.html' %}
+
+{% block body %}
+<script>
+
+  var socket;
+
+
+  $(document).ready(function() {
+
+
+      // The http vs. https is important. Use http for localhost!
+      socket = io.connect('http://'+document.domain+':'+location.port);
+      //executes after connecting
+      socket.on('connect',function(){
+        console.log('Yes Connection successfull');
+        socket.emit('join',{room:"{{room}}",username:"{{current_user.username}}"});
+        console.log("{'room_name':\"{{room}}\"}");
+      });
+      //sets status function
+      socket.on('status',function(data){
+        console.log('got ecexuted');
+        document.getElementById('posts').innerHTML+="<div>"+data['username']+" just joined "+data['room']+"</div><br>";
+        $('.container').scrollTop($('.container')[0].scrollHeight);
+
+      });
+      //sets left
+      socket.on('left_room_announcement',function(data){
+        document.getElementById('posts').innerHTML+="<div>"+data['username']+" just left "+data['room']+"</div><br>";
+        console.log("{{current_user.username}}"+" Left "+data['room']);
+      });
+      //submit on enter
+      $("#message").keypress(function(event) {
+             if (event.keyCode === 13) {
+                 $("#msgsub").click();
+             }
+         });
+         //on retrieval Message
+         socket.on('confirm_remove',function(data){
+           console.log('message removed common')
+            $(`#${data['id']}`).remove();
+         });
+
+
+
+
+
+         socket.on('received_message',function(data){
+
+           if(data['user_id']=="{{current_user.id}}")
+           {
+             console.log('yes matching');
+             var actual="<div class=\"user\" id=\"postof"+data['post_id']+"\"><span><strong><u>"+data['username']+"</u></strong></span><a style=\"color:red;text-dexoration:underline;\" id=\"postof"+data['post_id']+"\" onClick=\"del_post(this.id)\" > Delete</a><p>"+data['msg']+"</p></div>";
+            document.getElementById('posts').innerHTML+=actual;
+           }
+           else {
+             console.log('Not matching');
+             var actual="<div class=\"notuser\" id=\"postof"+data['post_id']+"\"><span><strong><u>"+data['username']+"</u></strong><a target=\"_blank\" href='/profile/"+data['username']+"'>View Profile</a></span><p>"+data['msg']+"</p></div>";
+             document.getElementById('posts').innerHTML+=actual;
+           }
+
+           $('.container').scrollTop($('.container')[0].scrollHeight);
+         });
+      //onclick for submit
+      document.getElementById("msgsub").onclick = function() {
+      let tempmsg=document.getElementById('message').value.trim();
+      if(tempmsg.length){
+        socket.emit('send_message',data={username:"{{current_user.username}}",room :"{{room}}",message:tempmsg});
+      }
+      document.getElementById("message").value = "";
+      $('.container').scrollTop($('.container')[0].scrollHeight);
+
+  };//end of onclick function
+
+
+
+      //execute before page exits
+      window.onbeforeunload = function () {
+        socket.emit('leave', {
+            username: "{{ current_user.username }}",
+            room: "{{ room }}"
+        });
+        $('.container').scrollTop($('.container')[0].scrollHeight);
+    };
+
+
+
+});//end of document.ready
+
+
+
+
+</script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/forumpage.css')}}">
+  <div class="container" id="posts"  style="overflow:scroll;height:600px;">
+<br>
+  {% for post in posts %}
+  <div class="chats">
+    {% if post.Author.id==current_user.id %}
+    <div class="user" id="postof{{post.id}}">
+      <span><strong><u>{{post.Author.username}}</u></strong></span>
+      <a  id="postof{{post.id}}" onClick="del_post(this.id)" style="color:red;text-dexoration:underline;" >Delete</a>
+      <p>{{post.message}}</p>
+    </div>
+    {% else %}
+    <div class="notuser" id="postof{{post.id}}">
+      <span><strong><u>{{post.Author.username}}</u></strong><a target="_blank" href="{{url_for('profile',username=post.Author.username)}}">View Profile</a></span>
+
+      <p>{{post.message}}</p>
+    </div>
+    {% endif %}
+      </div>
+    {% endfor %}
+
+
+  </div>
+
+<br>
+
+  <div class="container">
+
+
+      <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter Message" id="message" aria-label="Recipient's username"
+    aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-md btn-outline-default m-0 px-3 py-2 z-depth-0 waves-effect" type="button" id="msgsub">Send</button>
+  </div>
+</div>
+</div>
+
+
+
+  <script type="text/javascript">
+
+    $('.container').scrollTop($('.container')[0].scrollHeight);
+    function del_post(id){
+      socket.emit('remove',{room:"{{room}}",username:"{{current_user.username}}",post_id:id});
+      console.log(id);
+
+    };
+  </script>
+
+
+
+
+
+{%endblock%}

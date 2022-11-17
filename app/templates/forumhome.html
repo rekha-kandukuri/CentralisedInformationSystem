@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+
+
+
+{%block body%}
+<!-- <link rel="stylesheet" href="{{url_for('static',filename='css/forumpage.css')}}"> -->
+
+<div style="background-image: linear-gradient(lightgrey,white)" data-aos="flip-right" data-aos-delay="100">
+  <br>
+<div class="container">
+  <br>
+  {% if threads %}
+  {% for thread in threads %}
+  <div class="card" data-aos="flip-right" data-aos-delay="100">
+  <h5 class="card-header">{{thread.subject}} Community</h5>
+  <div class="card-body">
+
+    <p class="card-text">{{thread.description}}</p>
+    <p class="card-text">Created by {{thread.creator.user_role}} {{thread.creator.username}}</p>
+    <a href="{{url_for('forum.forum_',thread_id=thread.id)}}" target="blank_" class="btn btn-info btn-pill">Check Out Forum</a>
+  </div>
+</div>
+<br>
+{% endfor %}
+{% else %}
+<h1>OOps Some Error Occured</h1>
+{% endif %}
+
+</div>
+<a href="{{url_for('home.contactus')}}"  class="btn btn-info btn-pill mx-10" style="margin-left: 75px">Request a new forum</a>
+</div>
+<br>
+{%endblock%}
