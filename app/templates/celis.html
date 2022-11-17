@@ -1,0 +1,209 @@
+{% extends 'template.html' %}
+        <!--Carousel-->
+{% block body %}
+<br>
+<div style="
+max-width: 100%;
+overflow: hidden; 
+    overflow-y: hidden;
+    overflow-x: hidden;
+    ">
+<div>
+  <div class="intro-section" id="home-section">
+      
+      <div class="slide-1" style="background-image: url('../static/images/home/home.jpg');" data-stellar-background-ratio="0.5">
+        <div>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <section id="hero" class="d-flex align-items-center" style="">
+
+    <div class="container-fluid" data-aos="fade-up">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-side" data-aos-delay="100">Learn From The Expert</h1>
+                  <img src="../static/images/home/celislogo.png" width="300" height="150" data-aos="fade-up" data-aos-delay="100">
+                  
+                  
+          <h2>Carry an exam board everyday since everyday is just another exam!</h2>
+          <div><a href="{{url_for('recommender.recommend')}}" class="btn-get-started scrollto">Find your Course!!</a></div>
+        </div>
+        <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
+          <img src="../static/images/home/hero-img.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+                    </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+ 
+
+
+
+        <section id="services" data-aos="fade-up" data-aos-delay="200">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase section-heading">Services</h2>
+                    <h3 class="text-muted section-subheading">We deliver you the perfect!</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-book fa-stack-1x fa-inverse"></i></span>
+                    <h4 class="section-heading">Courses</h4>
+                    <p class="text-muted">CIS provides the finest and the best of courses availabale on the web from several different platforms to provide you a unified E-learning experience for the first time.</p>
+                </div>
+                <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fas fa-brain fa-stack-1x fa-inverse"></i></span>
+                    <h4 class="section-heading">Recommender System</h4>
+                    <p class="text-muted">Our customized recommendation system is primarly made for you to provide the right course path as well enabling you to experience E-Learning at its finest!</p>
+                </div>
+                <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-wechat fa-stack-1x fa-inverse"></i></span>
+                    <h4 class="section-heading">Forum</h4>
+                    <p class="text-muted">To connect you with instructors from around the globe, we intoduce a domain-based discussion forum to rectify all yourr queries and issues to celebrate E-Learning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio" class="bg-light" style="background-image:url('../static/images/home/bg-01.jpg');color: white; font-weight: bolder;" data-aos="fade-up" data-aos-delay="200">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase section-heading">Explore..</h2>
+                    <h3 class="section-subheading text-muted" style="font-weight: bolder;">Enjoy Learning through CIS!</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="static/assets/img/Home_1.png"></a>
+                    <div class="portfolio-caption text-center">
+                        <h4>Courses</h4>
+                        <p class="text-muted">More than 500 E-courses</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="static/assets/img/Home_2.png"></a>
+                    <div class="portfolio-caption text-center" style="margin-left: 40px;">
+                        <h4>Recommendations</h4>
+                      <p class="text-muted" style="font-weight: 500px;">Find the right course for you!</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="static/assets/img/Home_1.png"></a>
+                    <div class="portfolio-caption text-center">
+                        <h4>Forum</h4>
+                        <p class="text-muted">Domain-based forums made just for you</p>
+                    </div>
+                </div>
+                                            </div>
+        </div>
+    </section>
+
+        
+
+      </div>
+    </div>
+   
+   
+    <div class="modal fade portfolio-modal text-center" role="dialog" tabindex="-1" id="portfolioModal1" style=".modal .modal-content{
+overflow:hidden;
+}
+.modal-body{
+overflow-y:scroll; // to get scrollbar only for y axis
+}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase">Courses</h2>
+                                    <p class="item-intro text-muted">We provide to you 500+ domain based Courses!</p><img class="img-fluid d-block mx-auto" src="static/assets/img/Home_1.png">
+                                    <p>Use this area to choose the right course and enjoy the course as we provide to you the best rated courses form several platforms. Also enjoy the courses from indivdual intstructors as they provide to you the finest courses available on the web. Also use our recommendations to find a course that suits you. So, what are you waiting for?</p>
+                                    
+                                    
+                                    <a href="{{url_for('course.courses')}}" class="btn btn-primary" type="button"><span>&nbsp;Explore!</span></a>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close </span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal fade portfolio-modal text-center" role="dialog" tabindex="-1" id="portfolioModal2" style=".modal .modal-content{
+overflow:hidden;
+}
+.modal-body{
+overflow-y:scroll; // to get scrollbar only for y axis
+}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase">Recommendations</h2>
+                                    <p class="item-intro text-muted">Find the right course path!</p><img class="img-fluid d-block mx-auto" src="static/assets/img/recommendations.jpg">
+                                    <p>Use this area to find the right course from our recommendation system. We provide to you an efficient and effective pathway to find the best courses available on the web as well as the platform for you to sky dive through an infinite number of best rated E-course form various platforms.</p>
+                                    
+                                    <a href="{{url_for('recommender.recommend')}}" class="btn btn-primary" type="button"><span>&nbsp;Explore!</span></a>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade portfolio-modal text-center" role="dialog" tabindex="-1" id="portfolioModal3" style=".modal .modal-content{
+overflow:hidden;
+}
+.modal-body{
+overflow-y:scroll; // to get scrollbar only for y axis
+}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase">Forum</h2>
+                                    <p class="item-intro text-muted">Domain-based forums made just for you!</p><img class="img-fluid d-block mx-auto" src="static/assets/img/community-forum-2.jpg">
+                                    <p>Use this area to discuss as well as clarify all your issues as well as queries with instructors from all round the globe. We have designed the forum with utmost perfection to smoothen your ease of solving your doubt as well as making your E-Learning experience perfect. Kindly choose your particular domain and rectify your doubts without hesitation. Let's Go!</p>
+                                    
+                                    <a href="{{url_for('forum.forum_home')}}" class="btn btn-primary" type="button"><span>&nbsp;Explore!</span></a>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</div>
+
+
+{% endblock %}
