@@ -1,0 +1,138 @@
+
+
+
+.carousel-item{
+
+    align-self: center;
+    align-content: center;
+  }
+form p {
+    list-style:none;
+
+  }
+  .carousel-inner{
+  width:1100px;
+  max-height: 400px;
+}
+.carousel-item img{
+    height: 400px;
+    width: 1100px;
+    margin: auto;
+  }
+.bd-example
+{
+    margin-left: auto;
+}
+.bd-example{
+    display: block;
+    height: 176px;
+    width: 1292px;
+    margin:auto;
+}
+.btn {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 14px 30px; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+  .btn.btn-black {
+    border-width: 2px;
+    border-color: #000;
+    background: #000;
+    color: #fff; }
+    .btn.btn-black:hover {
+      color: #000;
+      background-color: transparent; }
+    .btn.btn-black.btn-outline-black {
+      color: #000;
+      background-color: transparent; }
+      .btn.btn-black.btn-outline-black:hover {
+        border-color: #000;
+        background: #000;
+        color: #fff; }
+  .btn.btn-white {
+    border-width: 2px;
+    border-color: #fff;
+    background: #fff;
+    color: #000; }
+    .btn.btn-white:hover {
+      color: #fff;
+      background-color: transparent; }
+    .btn.btn-white.btn-outline-white {
+      color: #fff;
+      background-color: transparent; }
+      .btn.btn-white.btn-outline-white:hover {
+        border-color: #fff;
+        background: #fff;
+        color: #000; }
+  .btn.btn-pill {
+    border-radius: 30px; }
+#Search{
+
+padding-right: 10px;
+}
+body{
+  padding-top: 0px;
+  z-index: 0;
+  height: 100%;
+}
+.navbar-dark {
+  background-color:bisque ;
+}
+footer{
+  background-color:whitesmoke;
+  z-index:1;
+  border-top-style:double;
+  border-color: black;
+  padding-top: 1px;
+  margin-top: 10px;
+
+}
+.footer-copyright {
+  text-emphasis-color: black;
+  text-decoration-color: black;
+}
+
+.footbut {
+  background-color: black;
+  border-color: white;
+  color: white;
+  font-size: 20px;
+}
+
+footer p{
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
+}
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+
+.body {
+  margin-top: 30px;
+
+    overflow-y: hidden;
+    overflow-x: hidden; /* Add a top margin to avoid content overlay */
+}
