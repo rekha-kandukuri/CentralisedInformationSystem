@@ -157,13 +157,13 @@
               {%for course in courses%}
               <tr>
                 <th scope="row">{{loop.index}}</th>
-                <td><a href="{{url_for('view_course',course_code=course.course_code)}}">{{course.course_code}}</a></td>
+                <td><a href="{{url_for('course.view_course',course_code=course.course_code)}}">{{course.course_code}}</a></td>
                 <td>{{course.Course_name}}</td>
                 <td><a href="{{course.resources_link}}" target='_blank'>{{course.resources_link}}</a></td>
                 <td>{{course.students_enrolled.all()|length}}</td>
                 {% if current_user.id==user.id %}
-                <td><a href="{{url_for('edit_course_page',username=current_user.username,course=course.course_code)}}">Click Here to Edit Data</a></td>
-                <td><a href="{{url_for('view_students',course_code=course.course_code)}}">View Students</a></td>
+                <td><a href="{{url_for('course.edit_course_page',username=current_user.username,course=course.course_code)}}">Click Here to Edit Data</a></td>
+                <td><a href="{{url_for('course.view_students',course_code=course.course_code)}}">View Students</a></td>
                 {%endif%}
               </tr>
               {%endfor%}

@@ -24,7 +24,7 @@ def enroll_course(course_code):
         c.add_student(current_user)
         db.session.commit()
         flash('Enrolled Successfully', category='success')
-        return redirect(url_for('view_course', course_code=course_code))
+        return redirect(url_for('course.view_course', course_code=course_code))
     else:
         return redirect(url_for('home.index'))
 
@@ -64,10 +64,10 @@ def add_course():
             db.session.add(c)
             db.session.commit()
             flash('Course Added Successfully', category='success')
-            return redirect(url_for('profile', username=current_user.username))
+            return redirect(url_for('auth.profile', username=current_user.username))
         return render_template('add_course.html', form=form)
     else:
-        return redirect(url_for('profile', username=current_user.username))
+        return redirect(url_for('auth.profile', username=current_user.username))
 
 
 @course.route('/unenroll/<coursecode>')
