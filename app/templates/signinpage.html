@@ -1,0 +1,47 @@
+{% extends 'template.html' %}
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+  
+  <br>
+  <br>
+<div class="container">
+  <br>
+  <br>
+  <h1 style="font-weight: bold;"><u>Enter Details</u></h1>
+  <br>
+  <form class="" action="" method="post">
+      {{form.hidden_tag()}}
+      <p>
+        {{form.email.label}}<br>
+        {{form.email(size=32)}}
+        {% for error in form.email.errors %}<br>
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+      <br>
+      <p>
+        {{form.password.label}}<br>
+        {{form.password(size=32)}}
+        {% for error in form.password.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      <br>
+      <p>
+        {{form.remember_me}}{{form.remember_me.label}}
+      </p>
+      <br>
+      <p>{{form.submit}}</p>
+  </form>
+</div>
+<div class="container">
+
+  <h5>New User? <a href="{{url_for('auth.register')}}"  class="text-info">Register Here</a></h5>
+   <h5><a href="{{url_for('auth.reset_request')}}" class="text-info">Forgot Password</a></h5>
+
+</div>
+</div>
+<br>
+
+
+{% endblock %}

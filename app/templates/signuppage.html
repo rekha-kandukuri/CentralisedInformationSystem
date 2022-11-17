@@ -1,0 +1,70 @@
+{%  extends 'template.html' %}
+
+
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+  <br>
+  <br>
+  <div class="container">
+
+
+      <br>
+      <div class="container">
+  <h1 data-aos="flip-up" data-aos-delay="100" style="font-weight: bold;"><u>Register</u></h1>
+
+    <form class="" action="" method="post">
+      {{ form. hidden_tag() }}
+      <p>
+        {{form.username.label}}<br>
+        {{form.username(size=32)}}
+        {% for error in form.username.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+
+      </p>
+      <p>
+        {{form.email.label}}<br>
+        {{form.email(size=32)}}
+        {% for error in form.email.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+
+      </p>
+      <p>
+        {{form.password.label}}<br>
+        {{form.password(size=32)}}
+        {% for error in form.password.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      <p>
+        {{form.conpassword.label}}<br>
+        {{form.conpassword}}
+        {% for error in form.conpassword.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      <p>
+        {{form.user_role.label}}<br>
+        {{form.user_role}}
+        {% for error in form.user_role.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      <br><br><br><br>
+      <p>
+        {{form.Region.label}}<br>
+        {{form.Region}}
+        {% for error in form.Region.errors %}<br>
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+
+      <p>{{form.submit}}</p>
+
+    </form>
+
+</div>
+</div></div>
+<br>
+{% endblock %}
