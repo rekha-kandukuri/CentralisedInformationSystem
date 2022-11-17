@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-course = Blueprint('course', __name__,  template_folder='templates')
+course = Blueprint('course', __name__)
 
 from . import models, routes
