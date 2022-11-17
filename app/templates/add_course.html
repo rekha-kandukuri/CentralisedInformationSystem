@@ -1,0 +1,54 @@
+{%  extends 'template.html' %}
+
+
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white)">
+<div class="container">
+
+
+      <br>
+      <div class="container">
+  <h1 >Register</h1>
+
+    <form class="" action="" method="post">
+      {{ form. hidden_tag() }}
+      <p>
+        {{form.Course_Code.label}}<br>
+        {{form.Course_Code(size=32)}}
+        {% for error in form.Course_Code.errors %}
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+
+      </p>
+      <p>
+        {{form.Course_Name.label}}<br>
+        {{form.Course_Name(size=32)}}
+        {% for error in form.Course_Name.errors %}
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+
+      </p>
+      <p>
+        {{form.Course_description.label}}<br>
+        {{form.Course_description(size=32)}}
+        {% for error in form.Course_description.errors %}
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      <p>
+        {{form.resources_link.label}}<br>
+        {{form.resources_link}}
+        {% for error in form.resources_link.errors %}
+ <span style="color: red;">[{{ error }}]</span>
+ {% endfor %}
+      </p>
+      
+
+      <p>{{form.submit}}</p>
+
+    </form>
+
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{%extends 'template.html'%}
+{%block body%}
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+  
+<br>
+<br>
+<div class="container">
+    <h1><u>Your Students for Course {{course.course_code}}</u></h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sn. No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Region</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for student in students%}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td><a href="{{url_for('auth.profile',username=student.username)}}">{{student.username}}</a></td>
+        <td>{{student.email}}</td>
+        <td>{{student.Region}}</td>
+      </tr>
+      {%endfor%}
+      
+    </tbody>
+  </table>
+  <br><br><br><br><br><br>
+  
+
+</div>
+</div>
+<br>
+<br>
+
+{%endblock%}

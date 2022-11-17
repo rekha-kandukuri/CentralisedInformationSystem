@@ -1,0 +1,39 @@
+{% extends 'template.html' %}
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+<div class="container">
+    <br>
+    <br>
+<h2><u>{{course.Course_name}}</u></h2>
+<hr>
+<br>
+<br>
+<h4 class="text-info">Course Description:</h4>
+<hr>
+<h5>{{course.Course_Description}}</h5>
+<br>
+<br>
+<h4>Instructor</h4>
+<hr>
+<h5>{{i.username}}</h5>
+{% if current_user.user_role=='Student'%}
+{% if course.is_student(current_user)==0 %}
+<a href="{{url_for('course.enroll_course',course_code=course.course_code)}}"  class="btn btn-primary btn-pill">Enroll</a>
+{%else%}
+<br>
+<br>
+<h4>Resources Link:</h4>
+<hr>
+<h5><a href="{{course.resources_link}}" target="_blank">{{course.resources_link}}</a></h5>
+<br>
+<br>
+<hr>
+<a href=""  class="btn btn-primary btn-pill" disabled>Already Enrolled</a>
+<td><a href="{{url_for('course.remove',coursecode=course.course_code)}}">Click Here to Unenroll</a></td>
+{%endif%}
+{% endif%}
+</div>
+</div>
+<br>
+<br>
+{%endblock%}

@@ -1,0 +1,140 @@
+{% extends 'template.html' %}
+
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white)" data-aos="fade-up" data-aos-delay="200" >
+  <div class="container">
+    <br>
+    <br>
+    <h1><u>Enroll in  Courses  by Independent Creators</u></h1>
+    <br>
+    <div class="row">
+      {% for course in courses %}
+       <div class="col-lg-3">
+        <div>
+        <div class="card w-100" data-aos="flip-right" data-aos-delay="100" style="height: 100%;">
+          <img src="../static/images/home/home.jpg" class="card-img-top">
+          <h5 class="card-header">{{course.course_code}}</h5>
+          <div class="card-body">
+        
+            <p class="card-text">{{course.Course_name}}</p>
+            <p class="card-text">{{course.Course_Description}}</p>
+            <a href="{{url_for('course.view_course',course_code=course.course_code)}}" class="btn btn-info btn-pill" style="
+                color: #ffffff;
+   background-color: #51a351;">Check Out Course</a>
+          </div>
+        </div>
+        </div>
+        <br>
+        
+  </div>
+  {%endfor%}
+</div>
+  <br>
+  <br>
+  <ul class="nav nav-tabs" id="myTab" role="tablist" style="font-weight: bold;">
+    <li class="nav-item">
+      <a class="nav-link active btn-info" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Artificial Intelligence</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn-info" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Web Development</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn-info" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">App Development</a>
+    </li>
+  </ul>
+  <div>
+  <div class="tab-content" id="myTabContent" style="border-style: ridge; border-width: 10px">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">PlatForm</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Rating</th>
+            <th scope="col">No. of Reviews</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for i in range(len_ai)%}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{ai['Title'][i]}}</td>
+            <td>Udemy</td>
+            <td>{{ai['Instructors'][i]}}</td>
+            <td>{{ai['Rating'][i]}}</td>
+            <td>{{ai['Reviews'][i]}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">PlatForm</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Rating</th>
+            <th scope="col">No. of Reviews</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for i in range(len_web)%}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{web['Title'][i]}}</td>
+            <td>Udemy</td>
+            <td>{{web['Instructors'][i]}}</td>
+            <td>{{web['Rating'][i]}}</td>
+            <td>{{web['Reviews'][i]}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">PlatForm</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Rating</th>
+            <th scope="col">No. of Reviews</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for i in range(len_ai)%}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{app['Title'][i]}}</td>
+            <td>Udemy</td>
+            <td>{{app['Instructors'][i]}}</td>
+            <td>{{app['Rating'][i]}}</td>
+            <td>{{app['Reviews'][i]}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div></div>    
+<br>
+<br>  
+
+  {% endblock %}
+
+
+
+
+
+
+
+
+

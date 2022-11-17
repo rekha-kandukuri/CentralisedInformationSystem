@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+<br>
+<div class="container">
+    <br>
+  
+  <h1><u>Edit Details</u></h1>
+  <br>
+  <form class="" action="" method="post">
+    
+    <p>
+      <label for="twitter_link">Resources Link</label><br>
+      <input class="form-control form-group" id="resources_link" name="resources_link" size="32" type="text" value="{{course.resources_link}}">
+      
+    </p>
+    <br>
+    <p>
+      <label for="interests">Course Description</label><br>
+      <textarea class="form-control form-group" id="interests" name="interests" size="32">
+      {{course.Course_Description}}
+      </textarea>
+      
+    </p>
+    <br>
+    <p><input class="btn btn-primary btn-pill" id="submit" name="submit" style="height : 50px;" type="submit" value="Save Changes"></p>
+</form>
+</div>
+</div>
+<br>
+
+{%endblock%}
