@@ -1,0 +1,56 @@
+{% extends 'template.html' %}
+{% block body %}
+<div style="background-image: linear-gradient(lightgrey,white)" data-aos="fade-up" data-aos-delay="200">
+  
+
+<div class="container">
+    <br>
+    <br>
+  
+  <h1><u>Enter Details</u></h1>
+  <br>
+  <form class="" action="" method="post">
+    
+    <p>
+      <label for="twitter_link">Twitter URL:</label><br>
+      <input class="form-control form-group" id="twitter_link" name="twitter_link" size="32" type="url" value="{{current_user.twitter}}">
+      
+    </p>
+    <br>
+    <p>
+      <label for="linkedin_link">LinkedIn URL:</label><br>
+      <input class="form-control form-group" id="linkedin_link" name="linkedin_link" size="32" type="url" value="{{current_user.facebook}}">
+      
+    </p>
+    <br>
+    <p>
+      <label for="github_link">Github  URL:</label><br>
+      <input class="form-control form-group" id="github_link" name="github_link" size="32" type="url" value="{{current_user.instagram}}">
+      
+    </p>
+    <br>
+    <p>
+      <label for="birthdate">BirthDate:</label><br>
+      <input class="form-control form-group" id="birthdate" name="birthdate" size="32" type="date" value="{{current_user.birthdate}}">
+      
+    </p>
+    <br>
+    <p>
+      <label for="interests">About:</label><br>
+      <textarea class="form-control form-group" id="interests" name="interests" size="32">
+      {{current_user.Interests}}
+      </textarea>
+      
+    </p>
+    <br>
+    <p>
+     
+    </p>
+    <br>
+    <p><input class="btn btn-primary btn-pill" id="submit" name="submit" style="height : 50px;" type="submit" value="Save Changes"></p>
+</form>
+</div>
+</div>
+<br>
+
+{%endblock%}

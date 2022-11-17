@@ -1,0 +1,188 @@
+{% extends 'template.html' %}
+{% block body %}
+
+
+<div  style="background-image: linear-gradient(lightgrey,white);" data-aos="fade-up" data-aos-delay="200">
+  <br>
+  <br>
+<div class="container">
+  {% if current_user.id==user.id %}
+  <h1><u>Your Profile</u></h1>
+  {% else %}
+  <h1>{{user.user_role}} {{user.username}} Profile</h1>
+  {%endif%}
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Activity</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Courses</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for post in posts %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>Posted in {{post.BelongsTo.subject}}</td>
+                  <td>{{post.time.date()}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="card mb-4">
+              <div class="card-body">
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Latest activity:</td>
+                      {% if user.last_seen %}
+                      <td>{{user.last_seen.date()}},{{user.last_seen.hour}}:{{user.last_seen.minute}}</td>
+                      {% else %}
+                      <td>No Recent Activity</td>
+                      {%endif%}
+                    </tr>
+                    <tr>
+                      <td>Role:</td>
+                      <td>{{user.user_role}}</td>
+                    </tr>
+                    <tr>
+                      <td>Username:</td>
+                      <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                      <td>E-mail:</td>
+                      <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                      <td>Number of Posts:</td>
+                      <td>{{no_posts}}</td>
+                    </tr>
+                    <tr>
+                      <td>Number of Courses:</td>
+                      <td>{{user.provides_course.all()|length}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+                <h6 class="mt-4 mb-3">Social links</h6>
+  
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Instagram:</td>
+                      <td><a href="{{user.twitter}}">{{user.twitter}}</a></td>
+                    </tr>
+                    <tr>
+                      <td>LinkedIn:</td>
+                      <td><a href="{{user.facebook}}">{{user.facebook}}</a></td>
+                    </tr>
+                    <tr>
+                      <td>Github:</td>
+                      <td><a href="{{user.instagram}}">{{user.instagram}}</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+                <h6 class="mt-4 mb-3">Personal info</h6>
+  
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Birthday:</td>
+                      <td>{{user.birthdate}}</td>
+                    </tr>
+                    <tr>
+                      <td>Country:</td>
+                      <td>{{user.Region}}</td>
+                    </tr>
+                    <tr>
+                      <td>Languages:</td>
+                      <td>English</td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+  
+                <h6 class="mt-4 mb-3">About</h6>
+  
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>
+                        {{user.Interests}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+              </div>
+            </div>
+            {% if current_user.id==user.id %}
+        <a href="{{url_for('auth.edit_profile')}}" class="btn btn-primary btn-pill">Edit Profile</a>
+      {% endif %}
+
+        </div>
+        
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <div class="container">
+            <table class="table">
+              
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Course Name</th>
+                  <th scope="col">Number of Students Enrolled</th>
+                  <th scope="col">Resources GDrive Link</th>
+                  <th scope="col">Number of Student</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% if courses %}
+              {%for course in courses%}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td><a href="{{url_for('view_course',course_code=course.course_code)}}">{{course.course_code}}</a></td>
+                <td>{{course.Course_name}}</td>
+                <td><a href="{{course.resources_link}}" target='_blank'>{{course.resources_link}}</a></td>
+                <td>{{course.students_enrolled.all()|length}}</td>
+                {% if current_user.id==user.id %}
+                <td><a href="{{url_for('edit_course_page',username=current_user.username,course=course.course_code)}}">Click Here to Edit Data</a></td>
+                <td><a href="{{url_for('view_students',course_code=course.course_code)}}">View Students</a></td>
+                {%endif%}
+              </tr>
+              {%endfor%}
+              {%else%}
+              <p>An Error Occures We are Sorry</p>
+              {% endif %}
+              
+            </tbody>
+                
+              </table>
+              {%if current_user.id==user.id%}
+              <a href="{{url_for('course.add_course')}}"  class="btn btn-primary btn-pill">Add a Course</a>
+              {%endif%}  
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    <br><br><br><br>
+
+{% endblock %}
